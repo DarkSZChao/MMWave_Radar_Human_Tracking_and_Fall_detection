@@ -6,7 +6,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.ticker import LinearLocator
 
-from Library import FramePProcessor, folder_clean_recreate
+from library import FramePProcessor, folder_clean_recreate
 
 RP_colormap = ['C5', 'C7', 'C8']  # the colormap for radar raw points
 ES_colormap = ['lavender', 'thistle', 'violet', 'darkorchid', 'indigo']  # the colormap for radar energy strength
@@ -196,7 +196,7 @@ class Visualizer:
 
 
 if __name__ == '__main__':
-    # from CFG.config_maggs303 import *
+    # from cfg.config_maggs303 import *
     # kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
     #               'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
     #               'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -206,7 +206,7 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../Data/Maggs_303/2perple_AllRadar_Jan-25-16-50-55', 'rb') as file:
+    # with open('../data/Maggs_303/2perple_AllRadar_Jan-25-16-50-55', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[80:], interval=0.05, image_output_enable=False, **kwargs_CFG)
@@ -215,7 +215,7 @@ if __name__ == '__main__':
     # with open(f'obj_path', 'wb') as file:
     #     pickle.dump(vis.obj_path_saved, file)
 
-    # from CFG.config_maggs307 import *
+    # from cfg.config_maggs307 import *
     # kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
     #               'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
     #               'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -225,13 +225,13 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../Data/Maggs_307/SZC/SZC_auto_RadarSeq_Jun-04-16-59-54', 'rb') as file:
+    # with open('../data/Maggs_307/SZC/SZC_auto_RadarSeq_Jun-04-16-59-54', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[0:], interval=0.05, image_output_enable=False, **kwargs_CFG)
     # vis.run()
 
-    # from CFG.config_mvb340 import *
+    # from cfg.config_mvb340 import *
     # kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
     #               'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
     #               'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -241,13 +241,13 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../Data/Radar_placement/60deg_2', 'rb') as file:
+    # with open('../data/Radar_placement/60deg_2', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[400:], interval=0.05, image_output_enable=False, **kwargs_CFG)
     # vis.run()
 
-    # from CFG.config_mvb340_3R import *
+    # from cfg.config_mvb340_3R import *
     # kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
     #               'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
     #               'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -257,13 +257,13 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../Data/Fall_posture/4', 'rb') as file:
+    # with open('../data/Fall_posture/4', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[:], interval=0.05, image_output_enable=False, **kwargs_CFG)
     # vis.run()
 
-    # from Data.Fall_detection.config_maggs307 import *
+    # from data.Fall_detection.config_maggs307 import *
     # kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
     #               'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
     #               'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -273,7 +273,7 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../Data/Fall_detection/test_auto_RadarSeq_Jun-10-15-48-31', 'rb') as file:
+    # with open('../data/Fall_detection/test_auto_RadarSeq_Jun-10-15-48-31', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[:], interval=0.1, image_output_enable=False, **kwargs_CFG)
@@ -282,7 +282,7 @@ if __name__ == '__main__':
     # with open(f'./obj_path', 'wb') as file:
     #     pickle.dump(vis.obj_path_saved, file)
 
-    # from Data.Multiple_tracking.Tpeople.config_maggs307 import *
+    # from data.Multiple_tracking.Tpeople.config_maggs307 import *
     # kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
     #               'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
     #               'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -292,7 +292,7 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../Data/Multiple_tracking/Tpeople/test_auto_RadarSeq_Mar-31-16-25-48', 'rb') as file:
+    # with open('../data/Multiple_tracking/Tpeople/test_auto_RadarSeq_Mar-31-16-25-48', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[2000:], interval=0.01, image_output_enable=False, **kwargs_CFG)
@@ -301,7 +301,7 @@ if __name__ == '__main__':
     # with open(f'./obj_path', 'wb') as file:
     #     pickle.dump(vis.obj_path_saved, file)
 
-    from CFG.config_mvb501 import *
+    from cfg.config_mvb501 import *
     kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
                   'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
                   'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -311,7 +311,7 @@ if __name__ == '__main__':
                   'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
 
     # Load database
-    with open('../Data/MVB_501/2023_Nov/test_manual_RadarSeq_Nov-18-16-54-36', 'rb') as file:
+    with open('../data/MVB_501/2023_Nov/test_manual_RadarSeq_Nov-18-16-54-36', 'rb') as file:
         data = pickle.load(file)
 
     vis = Visualizer(data[:], interval=0.01, image_output_enable=False, **kwargs_CFG)

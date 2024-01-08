@@ -18,24 +18,24 @@ from time import sleep
 import winsound
 
 # import modules
-from Library import RadarReader, Visualizer, SyncMonitor
+from library import RadarReader, Visualizer, SyncMonitor
 try:
-    from Library import SaveCenter
+    from library import SaveCenter
     SVC_enable = True
 except:
     pass
 try:
-    from Library import Camera
+    from library import Camera
     CAM_enable = True
 except:
     pass
 try:
-    from Library import EmailNotifier
+    from library import EmailNotifier
     EMN_enable = True
 except:
     pass
 try:
-    from Library import VideoCompressor
+    from library import VideoCompressor
     VDC_enable = True
 except:
     pass
@@ -43,13 +43,13 @@ except:
 # import module configs
 hostname = socket.gethostname()
 if hostname == 'IT077979RTX2080':
-    from CFG.config_mvb501 import *
+    from cfg.config_mvb501 import *
 elif hostname == 'IT084378':
-    from CFG.config_mvb340 import *
+    from cfg.config_mvb340 import *
 elif hostname == 'IT080027':
-    from CFG.config_cp107 import *
+    from cfg.config_cp107 import *
 elif hostname == 'SZC-LAPTOP-M':
-    from CFG.config_cp107 import *
+    from cfg.config_cp107 import *
 else:
     raise Exception('Hostname is not found!')
 

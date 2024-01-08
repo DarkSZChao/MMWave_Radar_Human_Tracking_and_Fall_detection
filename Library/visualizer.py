@@ -13,7 +13,7 @@ import winsound
 from matplotlib import pyplot as plt
 from matplotlib.ticker import LinearLocator
 
-from Library.frame_post_processor import FramePProcessor
+from library.frame_post_processor import FramePProcessor
 
 RP_colormap = ['C5', 'C7', 'C8']  # the colormap for radar raw points
 ES_colormap = ['lavender', 'thistle', 'violet', 'darkorchid', 'indigo']  # the colormap for radar energy strength

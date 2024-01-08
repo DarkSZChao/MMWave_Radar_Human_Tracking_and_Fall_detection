@@ -1,10 +1,10 @@
 import glob
 import pickle
 
-from Library.utils import *
-from Tools.data_load import Visualizer
+from library.utils import *
+from tools.data_load import Visualizer
 
-file_path = 'C:/SZC/PhD/MMWave_Radar/ID/Data/MVB_Hall/Resolution_2/'
+file_path = 'C:/SZC/PhD/MMWave_Radar/ID/data/MVB_Hall/Resolution_2/'
 files_list = glob.glob(f'{file_path}*')
 data_list = []
 data_np = np.ndarray([0, 5])

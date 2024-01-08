@@ -9,7 +9,7 @@ from tensorflow.keras import Input, Model
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Dense, Flatten, Conv2D, MaxPooling2D, Dropout, BatchNormalization, Activation, Add
 from tensorflow.keras.utils import to_categorical
 
-from Library.utils import random_split
+from library.utils import random_split
 
 # enable GPU for calculation
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 0 for GPU, -1 for CPU
@@ -136,7 +136,7 @@ def load_data(label_categorical=False):
     """
     Faust point cloud data only
     """
-    # with open('C:/SZC/PhD/MMWave_Radar/ID/Data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed', 'rb') as file:
+    # with open('C:/SZC/PhD/MMWave_Radar/ID/data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed', 'rb') as file:
     #     datapoints_list, labels_np = pickle.load(file)
     #
     # np_length = 900
@@ -147,11 +147,11 @@ def load_data(label_categorical=False):
     #     datapoints_np = np.concatenate([datapoints_np, datapoints])
     #     print(f'Padding: {i}')
 
-    with open('C:/SZC/PhD/MMWave_Radar/ID/Data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed_padding0_1', 'rb') as file:
+    with open('./data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed_padding0_1', 'rb') as file:
         datapoints_np1, labels_np1 = pickle.load(file)
-    with open('C:/SZC/PhD/MMWave_Radar/ID/Data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed_padding0_2', 'rb') as file:
+    with open('./data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed_padding0_2', 'rb') as file:
         datapoints_np2, labels_np2 = pickle.load(file)
-    with open('C:/SZC/PhD/MMWave_Radar/ID/Data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed_padding0_3', 'rb') as file:
+    with open('./data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed_padding0_3', 'rb') as file:
         datapoints_np3, labels_np3 = pickle.load(file)
     datapoints_np, labels_np = np.concatenate([datapoints_np1, datapoints_np2, datapoints_np3]), np.concatenate([labels_np1, labels_np2, labels_np3])
 

@@ -8,7 +8,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from numpy import sin, cos
 
-from Library.data_processor import DataProcessor
+from library.data_processor import DataProcessor
 
 
 class FrameEProcessor(DataProcessor):  # early processing for frame of each radar before merging
@@ -132,7 +132,7 @@ if __name__ == '__main__':
     RADAR_CFG = {'name'          : 'test',
                  'cfg_port_name' : 'COM3',
                  'data_port_name': 'COM4',
-                 'cfg_file_name' : './CFG/IWR1843_3D.cfg',  # always use 3D data as input
+                 'cfg_file_name' : './cfg/IWR1843_3D.cfg',  # always use 3D data as input
                  'xlim'          : None,  # the x-direction limit for cloud points from this single radar, set as [a, b), from radar view
                  'ylim'          : (0.25, 4),
                  'zlim'          : None,

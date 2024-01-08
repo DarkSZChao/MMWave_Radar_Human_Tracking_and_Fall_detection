@@ -63,7 +63,7 @@ if __name__ == '__main__':
     import glob
     from send2trash import send2trash
 
-    file_dir = '../Data/MVB_501/**/'
+    file_dir = '../data/MVB_501/**/'
     file_path_list = glob.glob(os.path.join(file_dir, '*.mp4'), recursive=True)
     for i, f_path in enumerate(file_path_list):
         f_dir = os.path.dirname(f_path)

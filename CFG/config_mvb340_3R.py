@@ -14,7 +14,7 @@ RADAR_CFG_LIST = [
     {'name'          : 'IWR1843_Ori',
      'cfg_port_name' : 'COM6',
      'data_port_name': 'COM5',
-     'cfg_file_name' : './CFG/IWR1843_3D_20fps_9db.cfg',  # always use 3D data as input
+     'cfg_file_name' : './cfg/IWR1843_3D_20fps_9db.cfg',  # always use 3D data as input
      'xlim'          : None,  # the x-direction limit for cloud points from this single radar, set as [a, b), from radar view
      'ylim'          : (0.25, 4),
      'zlim'          : None,
@@ -25,7 +25,7 @@ RADAR_CFG_LIST = [
     {'name'          : 'IWR1843_Side',
      'cfg_port_name' : 'COM4',
      'data_port_name': 'COM3',
-     'cfg_file_name' : './CFG/IWR1843_3D_20fps_9db.cfg',  # always use 3D data as input
+     'cfg_file_name' : './cfg/IWR1843_3D_20fps_9db.cfg',  # always use 3D data as input
      'xlim'          : None,  # the x-direction limit for cloud points from this single radar, set as [a, b), from radar view
      'ylim'          : (0.25, 4),
      'zlim'          : None,
@@ -36,7 +36,7 @@ RADAR_CFG_LIST = [
     {'name'          : 'IWR1843_Top',
      'cfg_port_name' : 'COM7',
      'data_port_name': 'COM8',
-     'cfg_file_name' : './CFG/IWR1843_3D_20fps_9db.cfg',  # always use 3D data as input
+     'cfg_file_name' : './cfg/IWR1843_3D_20fps_9db.cfg',  # always use 3D data as input
      'xlim'          : None,  # the x-direction limit for cloud points from this single radar, set as [a, b), from radar view
      'ylim'          : (0.25, 4),
      'zlim'          : None,
@@ -188,7 +188,7 @@ HUMAN_OBJECT_CFG = {  # human object config for each object bin
 
 # single class instantiated, single config used
 SAVE_CENTER_CFG = {
-    'file_save_dir'             : './Data/MVB_340/',
+    'file_save_dir'             : './data/MVB_340/',
     'experiment_name'           : EXPERIMENT_NAME,
     # time saved in filename is the end time for manual mode
     # time saved in filename is the start time for auto mode
@@ -222,7 +222,7 @@ CAMERA_CFG = {
 RADAR_LOCATION = 'MVB 340'
 EMAIL_ADDRESS = '1740781310szc@gmail.com'  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
 EMAIL_NOTIFIER_CFG = {
-    'manual_token_path'            : './Library/email_notifier_token/manual_token.json',
+    'manual_token_path'            : './library/email_notifier_token/manual_token.json',
 
     # message sent when starts
     'message_sys_start'            : {

@@ -4,7 +4,7 @@ DBSCAN generator, abbr. DBS
 import numpy as np
 from sklearn.cluster import DBSCAN
 
-from Library.data_processor import DataProcessor
+from library.data_processor import DataProcessor
 
 
 class DBSCANGenerator(DataProcessor):

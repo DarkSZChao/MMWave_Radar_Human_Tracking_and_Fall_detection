@@ -3,7 +3,7 @@ import pickle
 import matplotlib.pyplot as plt
 from matplotlib.ticker import LinearLocator
 
-from Library.utils import *
+from library.utils import *
 
 RP_colormap = ['C5', 'C7', 'C8']  # the colormap for radar raw points
 # ES_colormap = ['lavender', 'thistle', 'violet', 'darkorchid', 'indigo']  # the colormap for radar energy strength
@@ -73,7 +73,7 @@ def plot_hist(_data):
 
 if __name__ == '__main__':
     """radar placement evaluation"""
-    # with open('../Data/Radar_placement/55deg_2', 'rb') as file:
+    # with open('../data/Radar_placement/55deg_2', 'rb') as file:
     #     data = pickle.load(file)[400:]
     # data_points = data_concatenate(data)
     #
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     # plt.show()
 
     """human fall posture evaluation"""
-    with open('../Data/Fall_posture/1', 'rb') as file:
+    with open('../data/Fall_posture/1', 'rb') as file:
         data = pickle.load(file)
     data_points = data_concatenate(data)
 
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     # Display the plot
     plt.show()
 
-    # with open('../Data/Fall_posture/2', 'rb') as file:
+    # with open('../data/Fall_posture/2', 'rb') as file:
     #     data = pickle.load(file)
     # data_points = data_concatenate(data)
     #
@@ -134,7 +134,7 @@ if __name__ == '__main__':
     # # Display the plot
     # plt.show()
 
-    # with open('../Data/Fall_posture/3', 'rb') as file:
+    # with open('../data/Fall_posture/3', 'rb') as file:
     #     data = pickle.load(file)
     # data_points = data_concatenate(data)
     #

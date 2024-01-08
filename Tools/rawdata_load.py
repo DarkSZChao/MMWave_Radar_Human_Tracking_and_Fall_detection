@@ -4,7 +4,7 @@ import matplotlib
 from matplotlib import pyplot as plt
 from matplotlib.ticker import LinearLocator
 
-with open('C:/SZC/PhD/MMWave_Radar/ID/Data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed', 'rb') as file:
+with open('../data/FAUSTSim/faust_pred_pointcloud_10000_dis_randspeed', 'rb') as file:
     data, _ = pickle.load(file)
 
 idx = [78, 1188, 2288]

@@ -6,8 +6,8 @@ from math import hypot
 
 import numpy as np
 
-from Library.data_processor import DataProcessor
-from Library.human_object import HumanObject
+from library.data_processor import DataProcessor
+from library.human_object import HumanObject
 
 
 class HumanTracking(DataProcessor):

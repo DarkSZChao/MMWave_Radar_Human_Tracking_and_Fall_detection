@@ -16,8 +16,8 @@ from tensorflow.keras import Input, Model
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten, Conv3D, MaxPooling3D, Embedding, LSTM, Bidirectional, Reshape, Concatenate
 
 
-from Library.frame_post_processor import FramePProcessor
-from CFG.config_maggs307 import *
+from library.frame_post_processor import FramePProcessor
+from cfg.config_maggs307 import *
 
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'  # 0 for GPU, -1 for CPU
@@ -57,7 +57,7 @@ def model_structure_matrix(input_shape, output_shape):
 
 def load_data():
     data = []
-    dir_list = glob.glob('./Data/Maggs_307/[a-d, f-z]*')
+    dir_list = glob.glob('./data/Maggs_307/[a-d, f-z]*')
     for data_dir in dir_list:
         path_list = glob.glob(os.path.join(data_dir, '*RadarSeq*'))
         for data_path in path_list:
@@ -247,5 +247,5 @@ if __name__ == '__main__':
     # pass
     #
     # # Load database
-    # with open('../Data/Maggs_307/SZC/SZC_auto_RadarSeq_Jun-04-16-59-54', 'rb') as file:
+    # with open('../data/Maggs_307/SZC/SZC_auto_RadarSeq_Jun-04-16-59-54', 'rb') as file:
     #     data = pickle.load(file)

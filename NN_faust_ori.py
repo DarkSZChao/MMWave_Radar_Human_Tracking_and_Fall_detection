@@ -9,7 +9,7 @@ from tensorflow.keras import Input, Model
 from tensorflow.keras.layers import Conv1D, MaxPooling1D, Dense, Flatten, Conv2D, MaxPooling2D, Dropout, BatchNormalization
 from tensorflow.keras.utils import to_categorical
 
-from Library.utils import random_split
+from library.utils import random_split
 
 # enable GPU for calculation
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 0 for GPU, -1 for CPU
@@ -91,7 +91,7 @@ def load_data(label_categorical=False):
     """
     Faust point cloud data only
     """
-    with open('C:/SZC/PhD/MMWave_Radar/ID/Data/FAUSTSim/faust_ori_pointcloud_128_10000_dis', 'rb') as file:
+    with open('C:/SZC/PhD/MMWave_Radar/ID/data/FAUSTSim/faust_ori_pointcloud_128_10000_dis', 'rb') as file:
         datapoints_np, labels_np = pickle.load(file)
 
     # define dataset params

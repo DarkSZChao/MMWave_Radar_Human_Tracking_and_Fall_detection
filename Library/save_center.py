@@ -12,7 +12,7 @@ import cv2
 import numpy as np
 import winsound
 
-from Library.utils import folder_create_with_curmonth
+from library.utils import folder_create_with_curmonth
 
 
 class SaveCenter:

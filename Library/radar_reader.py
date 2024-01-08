@@ -9,8 +9,8 @@ from datetime import datetime
 import numpy as np
 import serial
 
-from Library.TI.parser_mmw_demo import parser_one_mmw_demo_output_packet
-from Library.frame_early_processor import FrameEProcessor
+from library.TI.parser_mmw_demo import parser_one_mmw_demo_output_packet
+from library.frame_early_processor import FrameEProcessor
 
 header_length = 8 + 32
 magic_word = b'\x02\x01\x04\x03\x06\x05\x08\x07'
@@ -151,7 +151,7 @@ if __name__ == '__main__':
     config = {'name'          : 'Test',
               'cfg_port_name' : 'COM4',
               'data_port_name': 'COM5',
-              'cfg_file_name' : '../CFG/IWR1843_3D.cfg',
+              'cfg_file_name' : '../cfg/IWR1843_3D.cfg',
               'xlim'          : (-2, 2),
               'ylim'          : (0.2, 4),
               'zlim'          : (-2, 2),

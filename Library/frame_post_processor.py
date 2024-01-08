@@ -3,9 +3,9 @@ Designed for post-processing of data frame merged from all radars, abbr. FPP
 data(ndarray) = data_numbers(n) * channels(x, y, z, v, SNR)
 """
 
-from Library.DBSCAN_generator import DBSCANGenerator
-from Library.bgnoise_filter import BGNoiseFilter
-from Library.human_tracking import HumanTracking
+from library.DBSCAN_generator import DBSCANGenerator
+from library.bgnoise_filter import BGNoiseFilter
+from library.human_tracking import HumanTracking
 
 
 class FramePProcessor(DBSCANGenerator, BGNoiseFilter, HumanTracking):

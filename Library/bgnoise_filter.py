@@ -6,7 +6,7 @@ from collections import deque
 import numpy as np
 from sklearn.cluster import DBSCAN
 
-from Library.data_processor import DataProcessor
+from library.data_processor import DataProcessor
 
 
 class BGNoiseFilter(DataProcessor):
