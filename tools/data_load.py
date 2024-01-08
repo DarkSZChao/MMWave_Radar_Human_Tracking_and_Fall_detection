@@ -241,7 +241,7 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../data/Radar_placement/60deg_2', 'rb') as file:
+    # with open('../data/radar_placement/60deg_2', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[400:], interval=0.05, image_output_enable=False, **kwargs_CFG)
@@ -257,13 +257,13 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../data/Fall_posture/4', 'rb') as file:
+    # with open('../data/fall_posture/4', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[:], interval=0.05, image_output_enable=False, **kwargs_CFG)
     # vis.run()
 
-    # from data.Fall_detection.config_maggs307 import *
+    # from data.fall_detection.config_maggs307 import *
     # kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
     #               'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
     #               'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -273,7 +273,7 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../data/Fall_detection/test_auto_RadarSeq_Jun-10-15-48-31', 'rb') as file:
+    # with open('../data/fall_detection/test_auto_RadarSeq_Jun-10-15-48-31', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[:], interval=0.1, image_output_enable=False, **kwargs_CFG)
@@ -282,7 +282,7 @@ if __name__ == '__main__':
     # with open(f'./obj_path', 'wb') as file:
     #     pickle.dump(vis.obj_path_saved, file)
 
-    # from data.Multiple_tracking.Tpeople.config_maggs307 import *
+    # from data.multiple_tracking.Tpeople.config_maggs307 import *
     # kwargs_CFG = {'VISUALIZER_CFG'          : VISUALIZER_CFG,
     #               'RADAR_CFG_LIST'          : RADAR_CFG_LIST,
     #               'FRAME_POST_PROCESSOR_CFG': FRAME_POST_PROCESSOR_CFG,
@@ -292,7 +292,7 @@ if __name__ == '__main__':
     #               'HUMAN_OBJECT_CFG'        : HUMAN_OBJECT_CFG}
     #
     # # Load database
-    # with open('../data/Multiple_tracking/Tpeople/test_auto_RadarSeq_Mar-31-16-25-48', 'rb') as file:
+    # with open('../data/multiple_tracking/Tpeople/test_auto_RadarSeq_Mar-31-16-25-48', 'rb') as file:
     #     data = pickle.load(file)
     #
     # vis = Visualizer(data[2000:], interval=0.01, image_output_enable=False, **kwargs_CFG)

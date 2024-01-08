@@ -73,7 +73,7 @@ def plot_hist(_data):
 
 if __name__ == '__main__':
     """radar placement evaluation"""
-    # with open('../data/Radar_placement/55deg_2', 'rb') as file:
+    # with open('../data/radar_placement/55deg_2', 'rb') as file:
     #     data = pickle.load(file)[400:]
     # data_points = data_concatenate(data)
     #
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     # plt.show()
 
     """human fall posture evaluation"""
-    with open('../data/Fall_posture/1', 'rb') as file:
+    with open('../data/fall_posture/1', 'rb') as file:
         data = pickle.load(file)
     data_points = data_concatenate(data)
 
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     # Display the plot
     plt.show()
 
-    # with open('../data/Fall_posture/2', 'rb') as file:
+    # with open('../data/fall_posture/2', 'rb') as file:
     #     data = pickle.load(file)
     # data_points = data_concatenate(data)
     #
@@ -134,7 +134,7 @@ if __name__ == '__main__':
     # # Display the plot
     # plt.show()
 
-    # with open('../data/Fall_posture/3', 'rb') as file:
+    # with open('../data/fall_posture/3', 'rb') as file:
     #     data = pickle.load(file)
     # data_points = data_concatenate(data)
     #
