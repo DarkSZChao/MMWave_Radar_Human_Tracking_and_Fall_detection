@@ -198,7 +198,7 @@ CAMERA_CFG = {
 
 # single class instantiated, single config used
 RADAR_LOCATION = 'MVB 501'
-EMAIL_ADDRESS = '1740781310szc@gmail.com'  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
+EMAIL_ADDRESS = 'xxxx@gmail.com'  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
 EMAIL_NOTIFIER_CFG = {
     'manual_token_path'            : './library/email_notifier_token/manual_token.json',
 

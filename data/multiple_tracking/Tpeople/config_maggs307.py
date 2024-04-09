@@ -224,7 +224,7 @@ CAMERA_CFG = {
 EMAIL_NOTIFIER_CFG = {
     'manual_token_path': './library/email_notifier_token/manual_token.json',
     'message'          : {
-        'to'           : '1740781310szc@gmail.com',  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
+        'to'           : 'xxxx@gmail.com',  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
         'subject'      : 'Human detected in Maggs307!',
         'text'         :
             """

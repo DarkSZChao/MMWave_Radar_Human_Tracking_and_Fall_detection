@@ -213,7 +213,7 @@ class EmailNotifier(Gmail):
 
 if __name__ == '__main__':
     mes = {
-        'to'           : '1740781310szc@gmail.com',
+        'to'           : 'xxxx@gmail.com',
         'subject'      : 'Test Email from Gmail API',
         'text'         :
             """
