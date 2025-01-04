@@ -1,18 +1,18 @@
 # Basic
-Pillow>=9.3.0
-moviepy>=1.0.3
-pyserial>=3.5
+numpy
 Send2Trash
-func-timeout
-keyboard
+scipy
+pyserial
+matplotlib
+scikit-learn
 
-# Deep learning
-scikit-learn>=1.2.0
-tensorflow~=2.6.5
-
-# Popular
-numpy~=1.23.5
-matplotlib~=3.7.1
+# Camera
 opencv-python
+
+# Gmail
 google-api-python-client
 google-auth-oauthlib
+func-timeout
+
+# Video Compressor
+moviepy

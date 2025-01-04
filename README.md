@@ -13,44 +13,41 @@ This repository contains the implementation and code resources for our paper: **
 
 ## Table of Contents
 1. [System Architecture](#system-architecture)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Evaluation](#evaluation)
-5. [Contributions](#contributions)
-6. [License](#license)
+2. [Installation and Usage](#Installation-and-Usage)
+3. [License](#license)
 
 ---
 
 ## System Architecture
-![System Flowchart Diagram](Sys_flowchart.jpg)
 
-
-### Components
+### Components`
 - **Radar Hardware**: Three **Millimeter-Wave radars** from Texas Instruments.
-- **Signal Processing Pipeline**:
-  - Dynamic DBSCAN clustering
-  - Probability matrix for target tracking
-  - Feedback loop for noise reduction
 - **Real-Time Framework**: Integrates radar signals to track and classify human activity.
 
 ### Workflow
-1. **Signal Acquisition**: Raw data collected from the radars.
-2. **Clustering and Tracking**: Data processed using clustering algorithms and tracking matrices.
-3. **Fall Detection**: Status prediction using advanced probability-based methods.
-4. **Output**: Visual and statistical tracking results.
+![System Flowchart Diagram](Sys_flowchart.jpg)
 
 ---
 
-## Installation
+## Installation and Usage
 ### Prerequisites
 - Python 3.8 or higher
-- Libraries: `numpy`, `scipy`, `matplotlib`, `pandas`, `sklearn`
+- Libraries: `numpy`, `Send2Trash`,`scipy`,`pyserial`,`matplotlib`,`scikit-learn`,`opencv-python`,`google-api-python-client`,`google-auth-oauthlib`,`func-timeout`,`moviepy`
 
 ### Steps
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/mmwave-human-tracking.git
-   cd mmwave-human-tracking
+   git clone https://github.com/DarkSZChao/MMWave_Radar_Human_Tracking_and_Fall_detection.git
+   cd MMWave_Radar_Human_Tracking_and_Fall_detection
 
 2. Install dependencies:
+   ```bash
    pip install -r requirements.txt
+
+3. Config the parameters:
+   ```bash
+   cd cfg
+   ```
+   open **config_demo.py**, change port_name for radar under **RADAR_CFG_LIST** parameter.
+
+4. cd to root folder and start the system by runing **main.py**
