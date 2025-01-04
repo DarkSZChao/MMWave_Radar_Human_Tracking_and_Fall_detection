@@ -1,6 +1,7 @@
 """
 Designed to capture the image by using web camera, abbr. CAM
 """
+
 import time
 from datetime import datetime
 from multiprocessing import Process, Manager
@@ -17,7 +18,8 @@ class Camera:
         # shared params
         self.save_queue = shared_param_dict['save_queue']
         self.autosave_flag = shared_param_dict['autosave_flag']
-
+        self.status = shared_param_dict['proc_status_dict']
+        self.status['Module_CAM'] = True
         """
         pass config static parameters
         """
@@ -45,6 +47,7 @@ class Camera:
 
         self._log(f'Start...\tWidth: {self.w} Height: {self.h} FPS: {self.fps}')
 
+    # module entrance
     def run(self):
         if self.window_enable:
             # create window and set as top window
@@ -88,6 +91,7 @@ class Camera:
     def __del__(self):
         self.capture.release()
         self._log(f"Closed. Timestamp: {datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}")
+        self.status['Module_CAM'] = False
 
 
 def cam_proc_method(_run_flag, _shared_param_dict, _kwargs_CFG):
@@ -103,7 +107,7 @@ def monitor_method(_run_flag, _shared_param_dict):
 if __name__ == '__main__':
     CAMERA_CFG = {
         'name'                     : 'Camera',
-        'camera_index'             : 2,
+        'camera_index'             : 1,
         'capture_resolution'       : (1280, 720),  # (1280, 720) or (960, 540)
         'window_enable'            : True,  # if True, the radar data and camera data can not be saved together
 
@@ -119,6 +123,7 @@ if __name__ == '__main__':
                       'autosave_flag'      : Manager().Value('b', False),  # set as False, True or False, constantly high from the beginning to the end of recording
                       'compress_video_file': Manager().Value('c', None),  # the record video file waiting to be compressed
                       'email_image'        : Manager().Value('f', None),  # for image info from save_center to email_notifier module
+                      'proc_status_dict': Manager().dict(),  # for process status
                       }
     proc_list = []
 

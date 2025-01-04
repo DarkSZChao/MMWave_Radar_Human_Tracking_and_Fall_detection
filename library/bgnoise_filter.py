@@ -1,6 +1,7 @@
 """
 Background noise filter, abbr. BGN
 """
+
 from collections import deque
 
 import numpy as np
@@ -40,6 +41,7 @@ class BGNoiseFilter(DataProcessor):
         """
         super().__init__(**kwargs_CFG)
 
+    # filter the background noise
     def BGN_filter(self, data_points):
         for c in self.BGN_cluster_boundary:
             xboundary = (c[0], c[1])
@@ -56,12 +58,14 @@ class BGNoiseFilter(DataProcessor):
             data_points = self.DP_np_2D_row_removal(data_points, noise)
         return data_points
 
+    # get background noise area
     def BGN_get_filter_area(self):
         BGN_block_list = []
         for bb in self.BGN_cluster_boundary:
             BGN_block_list.append(self.DP_cubehull(None, (bb[0], bb[1]), (bb[2], bb[3]), (bb[4], bb[5])))
         return BGN_block_list
 
+    # background noise area update
     def BGN_update(self, bg_noise):
         # identify the noise with no speed and low ES
         bg_noise, _ = self.DP_np_filter(bg_noise, axis=3, range_lim=0)

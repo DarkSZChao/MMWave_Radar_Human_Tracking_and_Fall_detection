@@ -1,5 +1,5 @@
 """
-Designed for processing the data, abbr. DP
+Designed for processing the data, basic functions, abbr. DP
 data(ndarray) = data_numbers(n) * channels(x, y, z, v, SNR)
 """
 

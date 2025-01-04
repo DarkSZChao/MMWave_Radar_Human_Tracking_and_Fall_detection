@@ -2,6 +2,7 @@
 Designed for data frame from each radar, abbr. FEP
 data(ndarray) = data_numbers(n) * channels(x, y, z, v, SNR)
 """
+
 from collections import deque
 
 import numpy as np
@@ -137,7 +138,7 @@ if __name__ == '__main__':
                  'ylim'          : (0.25, 4),
                  'zlim'          : None,
                  'pos_offset'    : (0, 0, 0.8),  # default pos_offset is (0, 0, 0)
-                 'facing_angle'  : {'angle': (0, -60, 90), 'sequence': None},  # right-hand global coord-sys, (x, y, z): [-180, 180] positive counted anti-clockwise when facing from axis end towards origin, default rotation sequence: zyx
+                 'facing_angle'  : {'angle': (0, -60, 90), 'sequence': None},  # right-hand global coord-sys, (x, y, z): [-180, 180] positive counted anti-clockwise when facing from axis vertex towards origin, default rotation sequence: zyx
                  'ES_threshold'  : {'range': (200, None), 'speed_none_0_exception': True},  # if speed_none_0_exception is True, then the data with low ES but with speed will be reserved
                  }
     FRAME_EARLY_PROCESSOR_CFG = {  # early process config

@@ -1,3 +1,7 @@
+"""
+Designed for basic function, can replace the module data_processor step by step
+"""
+
 import os
 import shutil
 import time
@@ -83,7 +87,7 @@ def list_nesting_remover(input_list, output_list=None):
 def random_split(data, split_ratio):
     """
     lighter version of torch.torch.utils.data.random_split
-    split dataset into 2 subset at 1st dimension
+    split dataset into 2 subsets at 1st dimension
     :param data: (1D-list, ndarray) the dataset need to be split
     :param split_ratio: (float) the ratio for split
     :return: subdata1: data subset1
@@ -97,6 +101,46 @@ def random_split(data, split_ratio):
     subdata1 = data[subdata1_idx]
     subdata2 = data[subdata2_idx]
     return subdata1, subdata2
+
+
+def dataset_split(data, split_ratio, random=True):
+    """
+    lighter version of torch.torch.utils.data.random_split
+    split dataset into multiple subsets at 1st dimension randomly by default
+    :param data: (1D-list, ndarray) the dataset need to be split
+    :param split_ratio: (tuple/list - float) the ratio for split, e.g., (0.7, 0.2, 0.1)
+    :param random: (Boolean) the enable for random the dataset
+    :return: subdata_list: data subsets
+    """
+    # convert input data to numpy array
+    data = np.array(data)
+    datalen = len(data)
+    subdata_list = []
+
+    split_ratio_cum = np.cumsum(split_ratio)
+    if split_ratio_cum[-1] < 1:
+        split_ratio_cum = np.concatenate([split_ratio_cum, [1]])
+
+    if random:
+        np.random.shuffle(data)
+
+    ra1 = 0
+    for ra2 in split_ratio_cum:
+        # get split index of the data
+        subdata_idx = np.arange(round(datalen * ra1), round(datalen * ra2), 1)
+        subdata = data[subdata_idx]
+
+        # update split index
+        ra1 = ra2
+
+        # append the subdata to the list
+        subdata_list.append(subdata)
+
+    # remove empty nparray
+    if len(subdata_list[-1]) == 0:
+        subdata_list.pop(-1)
+
+    return subdata_list
 
 
 # numpy 2D data processing functions
@@ -155,6 +199,23 @@ def np_filter(data, axis, range_lim, mode=1):
     data_preserved = data[preserved_index]
     data_removed = data[removed_index]
     return data_preserved, data_removed
+
+
+def ES_speed_filter(data_points, ES_threshold):
+    """
+    :param data_points: (ndarray) data_numbers(n) * channels(c=5)
+    :param ES_threshold: (dict) the ES threshold
+    :return: data_points: (ndarray) data_numbers(n) * channels(c=5)
+             noise: (ndarray) data_numbers(n) * channels(c=5)
+    """
+    # remove points with low energy strength
+    data_points, noise = np_filter(data_points, axis=4, range_lim=ES_threshold['range'])
+
+    # identify the noise with speed
+    if len(noise) > 0 and ES_threshold['speed_none_0_exception']:
+        noise, noise_with_speed = np_filter(noise, axis=3, range_lim=0)
+        data_points = np.concatenate([data_points, noise_with_speed])
+    return data_points, noise
 
 
 def np_2D_set_operations(dataA, dataB, ops='intersection'):
@@ -223,7 +284,8 @@ def np_repeated_points_removal(data, axes=None):
 
 def np_window_sliding(data, window_length, step):
     """
-    window slide and stack at 1st dimension of data
+    window slide and stack at 1st dimension of data,
+    if the last window step can not be formed due to insufficient rest data, it will be dropped.
     :param data: (ndarray) data_numbers(n) * channels(c)
     :param window_length: (int) the stacked length for 2nd dimension time
     :param step: (int) >0, the number of data skipped for each sliding
@@ -241,7 +303,7 @@ def np_window_sliding(data, window_length, step):
 
 
 if __name__ == '__main__':
-    # index = [2, 6, 9, 3, 7, 8, 10, 199, 10]
-    index = np.random.random([20, 5])
-    a, b = random_split(index, 0.8)
+    # dataset = [2, 6, 9, 3, 7, 8, 10, 199, 10]
+    dataset = np.arange(0, 30, 1).reshape(10, -1)
+    a, b, c = dataset_split(dataset, (0.7, 0.2, 0.1), True)
     pass

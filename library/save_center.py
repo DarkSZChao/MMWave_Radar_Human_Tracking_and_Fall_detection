@@ -1,6 +1,7 @@
 """
 Designed to collect the data from modules and save them, abbr. SVC
 """
+
 import os.path
 import pickle
 import queue
@@ -27,6 +28,8 @@ class SaveCenter:
         self.autosave_flag = shared_param_dict['autosave_flag']
         self.compress_video_file = shared_param_dict['compress_video_file']
         self.email_image = shared_param_dict['email_image']
+        self.status = shared_param_dict['proc_status_dict']
+        self.status['Module_SVC'] = True
 
         """
         pass config static parameters
@@ -73,6 +76,7 @@ class SaveCenter:
 
         self._log('Start...')
 
+    # module entrance
     def run(self):
         while self.run_flag.value:
             # get saved data and classify
@@ -236,5 +240,24 @@ class SaveCenter:
         print(f'[{self.__class__.__name__}]\t{txt}')
 
     def __del__(self):
-        self.videowriter.release()
+        if self.autosave_flag.value:
+            # for radar
+            if len(self.autosave_rdr_data_deque) > 0:
+                # set start and end save time for asynchronous modules
+                asave_end_time = time.time()
+                end_index = abs(np.array(self.autosave_rdr_timestamp_deque) - asave_end_time).argmin() + 1
+                self._pickle_save(list(self.autosave_rdr_data_deque)[:end_index],
+                                  file_label='auto_RadarSeq',
+                                  file_time=self.asave_info['file_time'],
+                                  file_dir=folder_create_with_curmonth(self.file_save_dir))
+            # for camera
+            if self.videowriter_status:
+                self.videowriter.release()
+                self._log(f"{os.path.basename(self.asave_info['file_path'])} saved with FPS: {round(self.asave_info['fps'], 2)}.")
+                winsound.Beep(800, 100)
+                winsound.Beep(500, 100)
+            else:
+                self.videowriter.release()
+
         self._log(f"Closed. Timestamp: {datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}")
+        self.status['Module_SVC'] = False

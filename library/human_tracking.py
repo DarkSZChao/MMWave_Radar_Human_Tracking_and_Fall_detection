@@ -1,6 +1,7 @@
 """
 Human tracking, abbr. TRK
 """
+
 from collections import deque
 from math import hypot
 
@@ -29,6 +30,7 @@ class HumanTracking(DataProcessor):
         """inherit father class __init__ para"""
         super().__init__()
 
+    # calculate possibility matrix
     def TRK_update_poss_matrix(self, valid_points_list):
         # stack cluster valid points
         self.TRK_poss_clus_deque.append(valid_points_list)

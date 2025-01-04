@@ -1,6 +1,7 @@
 """
 Designed for data collection from radars, abbr. RDR
 """
+
 import multiprocessing
 import re
 import time
@@ -18,12 +19,15 @@ stop_word = 'sensorStop'
 
 
 class RadarReader:
-    def __init__(self, run_flag, radar_rd_queue, **kwargs_CFG):
+    def __init__(self, run_flag, radar_rd_queue, shared_param_dict, **kwargs_CFG):
         """
         get shared values and queues
         """
         self.run_flag = run_flag
         self.radar_rd_queue = radar_rd_queue
+
+        self.status = shared_param_dict['proc_status_dict']
+        self.status[kwargs_CFG['RADAR_CFG']['name']] = True
 
         """
         pass config static parameters
@@ -42,6 +46,7 @@ class RadarReader:
 
         self._log('Start...')
 
+    # radar connection
     def connect(self) -> bool:
         try:
             cfg_port, data_port = self._connect_port(self.cfg_port_name, self.data_port_name)
@@ -53,6 +58,7 @@ class RadarReader:
         self.data_port = data_port
         return True
 
+    # module entrance
     def run(self):
         if not self.connect():
             self._log(f"Radar {self.name} Connection Failed")
@@ -132,7 +138,8 @@ class RadarReader:
                 self._log('\t'.join(res_list[-1:] + res_list[0:-1]))
         self._log('cfg SENT\n')
 
-    def _log(self, txt):  # print with device name
+    # print with device name
+    def _log(self, txt):
         print(f'[{self.name}]\t{txt}')
 
     def __del__(self):
@@ -144,6 +151,7 @@ class RadarReader:
         except:
             pass
         self._log(f"Closed. Timestamp: {datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}")
+        self.status[self.name] = True
         self.run_flag.value = False
 
 

@@ -1,4 +1,5 @@
 # essential modules
+from .utils import *
 from .data_processor import *
 
 from .radar_reader import *
@@ -10,10 +11,7 @@ from .human_object import *
 from .human_tracking import *
 from .frame_post_processor import *
 from .visualizer import *
-
 from .sync_monitor import *
-
-from .utils import *
 
 # optional modules
 try:

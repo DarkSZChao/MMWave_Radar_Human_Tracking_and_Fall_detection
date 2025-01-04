@@ -1,6 +1,7 @@
 """
 DBSCAN generator, abbr. DBS
 """
+
 import numpy as np
 from sklearn.cluster import DBSCAN
 
@@ -39,6 +40,7 @@ class DBSCANGenerator(DataProcessor):
         """
         super().__init__(**kwargs_CFG)
 
+    # generate DBSCAN boxes dynamically
     def DBS_dynamic_ES(self, data_points):
         """
         :param data_points: (ndarray) data_numbers(n) * channels(5) for a dozen of data frames
@@ -91,6 +93,7 @@ class DBSCANGenerator(DataProcessor):
                 noise_total = np.concatenate([noise_total, noise])
         return vertices_list_total, valid_points_list_total, valid_points_total, noise_total
 
+    # basic DBSCAN function
     def DBS(self, data_points):
         """
         :param data_points: (ndarray) data_numbers(n) * channels(c>=3) for a dozen of data frames

@@ -1,6 +1,7 @@
 """
 Designed for data visualization, abbr. VIS
 """
+
 import math
 import queue
 import time
@@ -35,7 +36,8 @@ class Visualizer:
             self.save_queue = Manager().Queue(maxsize=0)
         self.mansave_flag = shared_param_dict['mansave_flag']
         self.autosave_flag = shared_param_dict['autosave_flag']
-
+        self.status = shared_param_dict['proc_status_dict']
+        self.status['Module_VIS'] = True
         """
         pass config static parameters
         """
@@ -74,6 +76,7 @@ class Visualizer:
 
         self._log('Start...')
 
+    # module entrance
     def run(self):
         if self.dimension == '2D':
             # create a plot
@@ -111,7 +114,7 @@ class Visualizer:
                 ax1.set_zlabel('z')
                 ax1.set_title('Radar')
                 spin += 0.04
-                ax1.view_init(ax1.elev - 0.5 * math.sin(spin), ax1.azim - 0.3 * math.sin(0.2 * spin))  # spin the view angle
+                ax1.view_init(ax1.elev - 0.5 * math.sin(spin), ax1.azim - 0.3 * math.sin(1.5 * spin))  # spin the view angle
                 # update the canvas
                 self._update_canvas(ax1)
         else:
@@ -194,11 +197,11 @@ class Visualizer:
             # draw object central points
             obj_status_list = []
             for person in self.fpp.TRK_people_list:
-                obj_cp, obj_status = person.get_info()
+                obj_cp, _, obj_status = person.get_info()
                 obj_status_list.append(obj_status)
                 self._plot(ax1, obj_cp[:, 0], obj_cp[:, 1], obj_cp[:, 2], marker='o', color=OS_colormap[obj_status])
-                if obj_status == 3:  # warning when object falls
-                    winsound.Beep(1000, 20)
+                # if obj_status == 3:  # warning when object falls
+                #     winsound.Beep(1000, 20)
 
             # auto save based on object detection
             if self.AUTOSAVE_ENABLE:
@@ -261,4 +264,5 @@ class Visualizer:
     def __del__(self):
         plt.close(self.fig)
         self._log(f"Closed. Timestamp: {datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}")
+        self.status['Module_VIS'] = False
         self.run_flag.value = False

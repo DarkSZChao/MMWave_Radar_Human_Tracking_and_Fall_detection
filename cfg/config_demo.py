@@ -1,50 +1,32 @@
+"""
+Config file for the system
+"""
+
 # global save parameters
-EXPERIMENT_NAME = 'test'
-RADAR_FPS = 20  # 20 frames per second, 50ms per frame
+EXPERIMENT_NAME = 'demo'
+RADAR_FPS = 20  # 20 frames per second, 100ms per frame
 CAMERA_FPS = 30  # 30 frames per second, lower under worse light condition
+
+# do not enable both save methods at the same time
 # manual save
-MANSAVE_ENABLE = False  # this controls the flag from the source
+MANSAVE_ENABLE = True  # this controls the flag from the source
 MANSAVE_PERIOD = 30  # second, the time period saved for manual save
 # auto save
-AUTOSAVE_ENABLE = True  # auto save function requires tracking system
+AUTOSAVE_ENABLE = False  # auto save function requires tracking system
 AUTOSAVE_PERIOD = 600  # second, the max time period saved for auto save (radar)
 
 # multiple class instantiated, multiple config used
 RADAR_CFG_LIST = [
     {'name'          : 'IWR1843_Ori',
-     'cfg_port_name' : 'COM6',
-     'data_port_name': 'COM5',
-     'cfg_file_name' : './cfg/IWR1843_3D_20fps_15db.cfg',  # always use 3D data as input
+     'cfg_port_name' : 'COM3',
+     'data_port_name': 'COM4',
+     'cfg_file_name' : './cfg/IWR1843_3D_20fps_9db.cfg',  # always use 3D data as input
      'xlim'          : None,  # the x-direction limit for cloud points from this single radar, set as [a, b), from radar view
-     'ylim'          : (0.25, 4),
+     'ylim'          : (0.25, 5),
      'zlim'          : None,
      'pos_offset'    : (0, 0, 1),  # default pos_offset is (0, 0, 0)
-     'facing_angle'  : {'angle': (0, 0, 0), 'sequence': None},  # right-hand global coord-sys, (x, y, z): [-180, 180] positive counted anti-clockwise when facing from axis end towards origin, default rotation sequence: zyx
+     'facing_angle'  : {'angle': (0, 0, 0), 'sequence': None},  # right-hand global coord-sys, (x, y, z): [-180, 180] positive counted anti-clockwise when facing from axis vertex towards origin, default rotation sequence: zyx
      'ES_threshold'  : {'range': (200, None), 'speed_none_0_exception': True},  # if speed_none_0_exception is True, then the data with low ES but with speed will be reserved
-     },
-
-    {'name'          : 'IWR1843_Side',
-     'cfg_port_name' : 'COM15',
-     'data_port_name': 'COM16',
-     'cfg_file_name' : './cfg/IWR1843_3D_20fps_15db.cfg',  # always use 3D data as input
-     'xlim'          : None,  # the x-direction limit for cloud points from this single radar, set as [a, b), from radar view
-     'ylim'          : (0.25, 4),
-     'zlim'          : None,
-     'pos_offset'    : (1.7, 1.6, 1),  # default pos_offset is (0, 0, 0)
-     'facing_angle'  : {'angle': (0, 0, 90), 'sequence': None},  # right-hand global coord-sys, (x, y, z): [-180, 180] positive counted anti-clockwise when facing from axis end towards origin, default rotation sequence: zyx
-     'ES_threshold'  : {'range': (200, None), 'speed_none_0_exception': True},  # if speed_none_0_exception is True, then the data with low ES but with speed will be reserved
-     },
-
-    {'name'          : 'IWR1843_Top',
-     'cfg_port_name' : 'COM8',
-     'data_port_name': 'COM7',
-     'cfg_file_name' : './cfg/IWR1843_3D_20fps_15db.cfg',  # always use 3D data as input
-     'xlim'          : None,  # the x-direction limit for cloud points from this single radar, set as [a, b), from radar view
-     'ylim'          : (0.25, 4),
-     'zlim'          : None,
-     'pos_offset'    : (0, 1.6, 2.45),  # default pos_offset is (0, 0, 0)
-     'facing_angle'  : {'angle': (-90, 0, 0), 'sequence': None},  # right-hand global coord-sys, (x, y, z): [-180, 180] positive counted anti-clockwise when facing from axis end towards origin, default rotation sequence: zyx
-     'ES_threshold'  : {'range': (150, None), 'speed_none_0_exception': True},  # if speed_none_0_exception is True, then the data with low ES but with speed will be reserved
      },
 ]
 
@@ -60,15 +42,15 @@ VISUALIZER_CFG = {
     'VIS_ylim'                : (0, 4),
     'VIS_zlim'                : (0, 2),
 
-    'auto_inactive_skip_frame': int(1 * RADAR_FPS),  # frames, the time period will be skipped when auto is inactive
+    'auto_inactive_skip_frame': int(4 * RADAR_FPS),  # frames, short skip radar frames and process one when no object is detected
 }
 
 # single class instantiated, single config used
 FRAME_POST_PROCESSOR_CFG = {  # post process config
     # cloud point filter para
-    'FPP_global_xlim' : (-1.7, 1.6),  # the x-direction limit for merged cloud points from all radars, set as [a, b), from global view
-    'FPP_global_ylim' : (0, 2.7),
-    'FPP_global_zlim' : (0, 2),
+    'FPP_global_xlim' : (-2, 2),  # the x-direction limit for merged cloud points from all radars, set as [a, b), from global view
+    'FPP_global_ylim' : (0, 4),
+    'FPP_global_zlim' : (0.1, 2),
     'FPP_ES_threshold': {'range': None, 'speed_none_0_exception': True},  # the points in this energy strength range will be preserved, if speed_none_0_exception is True, then the data with low ES but with speed will be reserved
 }
 
@@ -94,22 +76,22 @@ DBSCAN_GENERATOR_CFG = {  # DBSCAN para config
         'DBS_min_samples': 15,
     },
     'Dynamic_ES_100_above': {
-        'DBS_eps'        : 0.3,
-        'DBS_min_samples': 12,
+        'DBS_eps'        : 0.8,
+        'DBS_min_samples': 6,
     },
     'Dynamic_ES_200_above': {
-        'DBS_eps'        : 0.4,
-        'DBS_min_samples': 8,
+        'DBS_eps'        : 1,
+        'DBS_min_samples': 3,
     },
     'Dynamic_ES_300_above': {
-        'DBS_eps'        : 0.6,
-        'DBS_min_samples': 3,
+        'DBS_eps'        : 1.2,
+        'DBS_min_samples': 2,
         'DBS_size_xlim'  : (0.1, 0.8),  # the cluster size limit in x-direction
         'DBS_size_ylim'  : (0.1, 0.8),
         'DBS_size_zlim'  : (0.1, 2),
     },
     'Dynamic_ES_400_above': {
-        'DBS_eps'        : 1,
+        'DBS_eps'        : 1.5,
         'DBS_min_samples': 2,
         'DBS_size_xlim'  : (0.1, 0.8),  # the cluster size limit in x-direction
         'DBS_size_ylim'  : (0.1, 0.8),
@@ -141,7 +123,7 @@ HUMAN_TRACKING_CFG = {  # tracking system config
     # Tracking system para
     'TRK_obj_bin_number'              : 2,  # the maximum number of object which can be detected
     'TRK_poss_clus_deque_length'      : 3,  # the number of possible clusters stacked before calculating the poss matrix
-    'TRK_redundant_clus_remove_cp_dis': 0.8,  # the distance for remove redundant clusters closed to the updated one for multiple obj bin purpose
+    'TRK_redundant_clus_remove_cp_dis': 1,  # the distance for remove redundant clusters closed to the updated one for multiple obj bin purpose
 }
 
 # multiple class instantiated, single config used
@@ -168,9 +150,9 @@ HUMAN_OBJECT_CFG = {  # human object config for each object bin
         'sitting' : (0.3, 0.3, 0.6),
         'lying'   : (0.8, 0.8, 0.4),
     },
-    'sub_possibility_proportion': (1, 1, 1.8, 1.2),  # the coefficient for the possibility proportion
+    'sub_possibility_proportion': (1, 1, 1, 1),  # the coefficient for the possibility proportion
     'inactive_timeout'          : 5,  # second, if timeout, object bin status goes inactive
-    'obj_delete_timeout'        : 15,  # second, if timeout, delete this object bin
+    'obj_delete_timeout'        : 60,  # second, if timeout, delete this object bin
 
     # an entrance zone, for object bin start picking up an object
     'fuzzy_boundary_enter'      : False,
@@ -180,7 +162,7 @@ HUMAN_OBJECT_CFG = {  # human object config for each object bin
     'scene_zlim'                : FRAME_POST_PROCESSOR_CFG['FPP_global_zlim'],
 
     # object status threshold
-    'standing_sitting_threshold': 0.8,
+    'standing_sitting_threshold': 0.9,
     'sitting_lying_threshold'   : 0.4,
 
     # get last update 2-5 info to show the current position and status
@@ -190,7 +172,7 @@ HUMAN_OBJECT_CFG = {  # human object config for each object bin
 
 # single class instantiated, single config used
 SAVE_CENTER_CFG = {
-    'file_save_dir'             : './data/Maggs_307/',
+    'file_save_dir'             : './data/CP_107/',
     'experiment_name'           : EXPERIMENT_NAME,
     # time saved in filename is the end time for manual mode
     # time saved in filename is the start time for auto mode
@@ -198,20 +180,71 @@ SAVE_CENTER_CFG = {
     # manual save
     'mansave_period'            : MANSAVE_PERIOD,  # the time period saved for manual save
     # for radar
-    'mansave_rdr_enable'        : MANSAVE_ENABLE,  # not work if MANSAVE_ENABLE is False
     'mansave_rdr_frame_max'     : int(MANSAVE_PERIOD * RADAR_FPS * 1.2),  # *1.2 to guarantee the sequence integrity
     # for camera
-    'mansave_cam_enable'        : MANSAVE_ENABLE,  # not work if MANSAVE_ENABLE is False
     'mansave_cam_frame_max'     : int(MANSAVE_PERIOD * CAMERA_FPS * 1.2),  # *1.2 to guarantee the sequence integrity
 
     # auto save
     # for radar
-    'autosave_rdr_enable'       : AUTOSAVE_ENABLE,  # not work if AUTOSAVE_ENABLE is False
     'autosave_rdr_frame_max'    : int(AUTOSAVE_PERIOD * RADAR_FPS),
     'autosave_end_remove_period': HUMAN_OBJECT_CFG['obj_delete_timeout'] - HUMAN_OBJECT_CFG['inactive_timeout'],  # to remove the empty period for auto save
     # for camera
-    'autosave_cam_enable'       : AUTOSAVE_ENABLE,  # not work if AUTOSAVE_ENABLE is False
-    'autosave_cam_buffer'       : int((HUMAN_OBJECT_CFG['obj_delete_timeout'] - HUMAN_OBJECT_CFG['inactive_timeout']) * CAMERA_FPS / 2),
+    'autosave_cam_buffer'       : 3 * CAMERA_FPS,
+}
+
+# single class instantiated, single config used
+CAMERA_CFG = {
+    'name'                     : 'Camera',
+    'camera_index'             : 1,
+    'capture_resolution'       : (1280, 720),  # (1280, 720) or (960, 540)
+    'window_enable'            : False,  # if True, the radar data and camera data can not be saved together
+
+    'auto_inactive_skip_enable': True if VISUALIZER_CFG['auto_inactive_skip_frame'] > 0 else False,  # long skip all camera frames when no object is detected
+}
+
+# single class instantiated, single config used
+RADAR_LOCATION = 'CP 107'
+EMAIL_ADDRESS = '1740781310szc@gmail.com'  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
+EMAIL_NOTIFIER_CFG = {
+    'manual_token_path'            : './library/email_notifier_token/manual_token.json',
+
+    # message sent when starts
+    'message_sys_start'            : {
+        'to'           : EMAIL_ADDRESS,  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
+        'subject'      : f'{RADAR_LOCATION} PC_RADAR Auto_mode Activated Successfully!!',
+        'text'         :
+            f"""
+                The python script on PC_radar in room {RADAR_LOCATION} is activated as auto_mode successfully!!.
+            """,
+        'image_in_text': [],
+        'attachment'   : [],
+    } if AUTOSAVE_ENABLE else None,
+
+    # message sent when object detected
+    'message_obj_detected'         : {
+        'to'           : EMAIL_ADDRESS,  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
+        'subject'      : f'Human detected in {RADAR_LOCATION}!',
+        'text'         :
+            """
+                Human detected! See below:
+            """,
+        'image_in_text': [],
+        'attachment'   : [],
+    },
+
+    # message sent for daily check
+    'message_daily_check'          : {
+        'to'           : EMAIL_ADDRESS,  # multiple target addresses 'xxxx@gmail.com, xxxx@qq.com'
+        'subject'      : f'{RADAR_LOCATION} PC_RADAR is still ON!!',
+        'text'         :
+            f"""
+                The python script is still running on PC_radar in room {RADAR_LOCATION}.
+                Another happy day!
+            """,
+        'image_in_text': [],
+        'attachment'   : [],
+    } if AUTOSAVE_ENABLE else None,
+    'message_daily_check_send_time': ['08-00'] if AUTOSAVE_ENABLE else [],
 }
 
 # single class instantiated, single config used

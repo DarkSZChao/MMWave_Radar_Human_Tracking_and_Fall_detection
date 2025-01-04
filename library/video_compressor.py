@@ -1,6 +1,7 @@
 """
 Designed to compress the video after save, abbr. VDC
 """
+
 import os
 import time
 from datetime import datetime
@@ -17,6 +18,8 @@ class VideoCompressor:
         self.run_flag = run_flag
         # shared params
         self.compress_video_file = shared_param_dict['compress_video_file']  # sent from save_center
+        self.status = shared_param_dict['proc_status_dict']
+        self.status['Module_VDC'] = True
 
         """
         pass config static parameters
@@ -30,6 +33,7 @@ class VideoCompressor:
         """
         self._log('Start...')
 
+    # module entrance
     def run(self):
         while self.run_flag.value:
             if self.compress_video_file.value:
@@ -48,6 +52,7 @@ class VideoCompressor:
 
     def __del__(self):
         self._log(f"Closed.")
+        self.status['Module_VDC'] = False
 
 
 if __name__ == '__main__':
@@ -71,6 +76,7 @@ if __name__ == '__main__':
         f_name.insert(-1, '_comp.')
         f_outputpath = os.path.join(f_dir, ''.join(f_name))
         vc.compress_video(f_path, f_outputpath)
+        time.sleep(2)
         send2trash(f_path)
         time.sleep(2)
         os.renames(f_outputpath, f_path)

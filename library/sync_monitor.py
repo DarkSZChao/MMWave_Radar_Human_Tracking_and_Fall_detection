@@ -1,6 +1,7 @@
 """
 Designed to monitor and sync the queues, abbr. SCM
 """
+
 from datetime import datetime
 from multiprocessing import Manager
 from time import sleep
@@ -21,6 +22,8 @@ class SyncMonitor:
             self.save_queue = shared_param_dict['save_queue']
         except:
             self.save_queue = Manager().Queue(maxsize=0)
+        self.status = shared_param_dict['proc_status_dict']
+        self.status['Module_SCM'] = True
 
         """
         pass config static parameters
@@ -66,4 +69,5 @@ class SyncMonitor:
 
     def __del__(self):
         self._log(f"Closed. Timestamp: {datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}")
+        self.status['Module_SCM'] = False
         self.run_flag.value = False

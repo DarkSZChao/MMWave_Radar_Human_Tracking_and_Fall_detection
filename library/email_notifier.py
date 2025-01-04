@@ -2,6 +2,7 @@
 Designed to send email notifications, abbr. EMN
 based on gmail services and google oauth2 credentials
 """
+
 import base64
 import copy
 import os.path
@@ -139,6 +140,8 @@ class EmailNotifier(Gmail):
         # shared params
         self.autosave_flag = shared_param_dict['autosave_flag']
         self.email_image = shared_param_dict['email_image']  # sent from save_center
+        self.status = shared_param_dict['proc_status_dict']
+        self.status['Module_EMN'] = True
 
         """
         pass config static parameters
@@ -209,11 +212,12 @@ class EmailNotifier(Gmail):
 
     def __del__(self):
         self._log(f"Closed. Timestamp: {datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}")
+        self.status['Module_EMN'] = False
 
 
 if __name__ == '__main__':
     mes = {
-        'to'           : 'xxxx@gmail.com',
+        'to'           : '1740781310szc@gmail.com',
         'subject'      : 'Test Email from Gmail API',
         'text'         :
             """

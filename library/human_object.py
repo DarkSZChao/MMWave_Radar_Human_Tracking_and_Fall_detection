@@ -6,6 +6,7 @@ from collections import deque
 from math import hypot
 
 import numpy as np
+from scipy import stats
 
 
 class HumanObject:
@@ -69,6 +70,28 @@ class HumanObject:
                 return 0
         # if there are previous points
         else:
+            # # use z-score
+            # if len(self.obj_cp_deque) > 10:
+            #     obj_cp_np = np.array(self.obj_cp_deque).reshape([-1, 3])
+            #     obj_cp_np = np.concatenate([obj_cp_np, obj_cp])
+            #     x = obj_cp_np[:, 0]
+            #     y = obj_cp_np[:, 1]
+            #     z = obj_cp_np[:, 2]
+            #     dis_possibility_x = np.exp(-abs(stats.zscore(x)[-1]))
+            #     dis_possibility_y = np.exp(-abs(stats.zscore(y)[-1]))
+            #     dis_possibility_z = np.exp(-abs(stats.zscore(z)[-1]))
+            #     dis_possibility = sum(np.array([dis_possibility_x, dis_possibility_y, dis_possibility_z]) * [0.3, 0.3, 0.4])
+            #
+            #     obj_size_np = np.array(self.obj_size_deque).reshape([-1, 3])
+            #     obj_size_np = np.concatenate([obj_size_np, obj_size])
+            #     x = obj_size_np[:, 0]
+            #     y = obj_size_np[:, 1]
+            #     z = obj_size_np[:, 2]
+            #     size_possibility_x = np.exp(-abs(stats.zscore(x)[-1]))
+            #     size_possibility_y = np.exp(-abs(stats.zscore(y)[-1]))
+            #     size_possibility_z = np.exp(-abs(stats.zscore(z)[-1]))
+            #     size_possibility = sum(np.array([dis_possibility_x, dis_possibility_y, dis_possibility_z]) * [0.2, 0.2, 0.6])
+
             # based on distance between the current and the last
             diff = obj_cp - self.obj_cp_deque[-1]
             dis_diff = hypot(diff[0], diff[1], diff[2])
@@ -122,10 +145,12 @@ class HumanObject:
     def get_info(self):
         """
         :return: obj_cp (ndarray) data_numbers(1) * channels(3), the central point of the object (this shape is for plot when no points)
+                 obj_size (ndarray) data_numbers(1) * channels(3)
                  obj_status (int) 0-losing target, 1-standing, 2-sitting, 3-lying
         """
         # default is empty
         obj_cp = np.ndarray([0, 3], dtype=np.float16)
+        obj_size = np.ndarray([0, 3], dtype=np.float16)
         obj_status = -1
 
         # if there are previous points
@@ -148,6 +173,13 @@ class HumanObject:
                 else:  # get latest info
                     obj_cp = self.obj_cp_deque[-1][np.newaxis, :]
 
+                # get obj size
+                if self.get_fuzzy_pos_No:  # get comprehensive info based on previous value sequence
+                    obj_size_np = np.array(list(self.obj_size_deque))[-self.get_fuzzy_pos_No:]
+                    obj_size = np.array([[np.mean(obj_size_np[:, 0]), np.mean(obj_size_np[:, 1]), np.mean(obj_size_np[:, 2])]])
+                else:  # get latest info
+                    obj_size = self.obj_size_deque[-1][np.newaxis, :]
+
                 # get obj status
                 if self.get_fuzzy_status_No:  # get comprehensive info based on previous value sequence
                     # sort the status labels, high to low
@@ -160,7 +192,8 @@ class HumanObject:
                 # check if temporarily lose the target
                 if self._check_timeout(self.inactive_timeout):
                     obj_status = 0
-        return obj_cp, obj_status
+
+        return obj_cp, obj_size, obj_status
 
     def _get_status(self, obj_cp, obj_size):
         """
