@@ -22,7 +22,7 @@ This repository contains the implementation and code resources for our paper: **
 ---
 
 ## System Architecture
-![System Flowchart Diagram](Sys_flowchart.pdf)
+![System Flowchart Diagram](Sys_flowchart.jpg)
 
 
 ### Components
