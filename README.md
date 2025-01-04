@@ -19,9 +19,8 @@ This repository contains the implementation and code resources for our paper: **
 ---
 
 ## System Architecture
-
-### Components`
-- **Radar Hardware**: Three **Millimeter-Wave radars** from Texas Instruments.
+### Components
+- **Radar Hardware**: 3 **Millimeter-Wave radars** from Texas Instruments.
 - **Real-Time Framework**: Integrates radar signals to track and classify human activity.
 
 ### Workflow
@@ -44,10 +43,24 @@ This repository contains the implementation and code resources for our paper: **
    ```bash
    pip install -r requirements.txt
 
-3. Config the parameters:
+3. Connect radars.
+
+4. Check which port number the radars are using:
+
+5. Config the parameters:
    ```bash
    cd cfg
    ```
-   open **config_demo.py**, change port_name for radar under **RADAR_CFG_LIST** parameter.
+   open **config_demo.py**, under **RADAR_CFG_LIST** parameter, update **cfg_port_name** and **data_port_name** for radars
 
-4. cd to root folder and start the system by runing **main.py**
+6. Go back to root folder and start the system by runing **main.py**
+
+---
+
+## License
+This project is licensed under the MIT License. 
+
+You are free to use, modify, and distribute this project, provided that you include the original copyright and license notice in any copy of the project or substantial portions of it.
+
+See the [LICENSE](LICENSE) file for more details.
+
