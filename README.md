@@ -1,26 +1,13 @@
 # Millimeter-Wave Radar-Based Multi-Human Tracking and Fall Detection System
 
 ## Overview
-This repository contains the implementation and resources for our **Millimeter-Wave Radar-Based Indoor Tracking and Fall Detection System**, leveraging **three Millimeter-Wave radars from Texas Instruments**. Our system is designed to non-intrusively track multiple humans and detect falls in real time, addressing challenges such as mobility inconvenience, lighting conditions, and privacy issues inherent in wearable or camera-based systems.
+This repository contains the implementation and code resources for our paper: **Advanced Millimeter-Wave Radar System for Real-Time Multiple-Human Tracking and Fall Detection** (link: https://doi.org/10.3390/s24113660). The study explores an indoor system that employs Millimeter-Wave radars to track multiple humans and detect falls in real time. By integrating signals from non-intrusive radars, our framework addresses challenges such as mobility inconvenience, lighting conditions, and privacy issues inherent in wearable or camera-based systems.
 
 ### Key Features
-- **Multi-Human Tracking**: Tracks up to three humans simultaneously with high precision.
+- **Multi-Human Tracking**: Tracks multiple humans simultaneously with high precision.
 - **Real-Time Fall Detection**: Accurately predicts and classifies human body statuses, including falls.
 - **Advanced Signal Processing**: Employs Dynamic DBSCAN clustering and innovative feedback loops for enhanced accuracy.
-- **Privacy and Accessibility**: Operates without cameras or wearables, ensuring non-intrusive monitoring.
-
----
-
-## Abstract
-This study explores an indoor system for tracking multiple humans and detecting falls, employing **Millimeter-Wave radars**. Our framework integrates signals from multiple radars to track positions and predict body statuses in real time. Key contributions include:
-- Evaluation of radar characteristics, including resolution, interference, and coverage.
-- Introduction of Dynamic DBSCAN clustering based on signal energy levels.
-- Development of a probability matrix for target tracking and fall detection.
-- Implementation of a feedback loop for noise reduction.
-  
-Through extensive evaluation (300+ minutes, ~360,000 frames), our prototype system achieves:
-- **Precision**: 98.9% for single-target tracking, 96.5% for two targets, 94.0% for three targets.
-- **Fall Detection Accuracy**: 96.3%.
+- **Privacy and Accessibility**: Operates without cameras or wearables, ensuring non-intrusive monitoring. Camera module in the project is just for ground truth.
 
 ---
 
@@ -35,6 +22,9 @@ Through extensive evaluation (300+ minutes, ~360,000 frames), our prototype syst
 ---
 
 ## System Architecture
+![System Flowchart Diagram](Sys_flowchart.pdf)
+
+
 ### Components
 - **Radar Hardware**: Three **Millimeter-Wave radars** from Texas Instruments.
 - **Signal Processing Pipeline**:
@@ -61,3 +51,6 @@ Through extensive evaluation (300+ minutes, ~360,000 frames), our prototype syst
    ```bash
    git clone https://github.com/yourusername/mmwave-human-tracking.git
    cd mmwave-human-tracking
+
+2. Install dependencies:
+   pip install -r requirements.txt
